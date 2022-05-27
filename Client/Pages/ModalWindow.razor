@@ -1,0 +1,50 @@
+﻿@using OurFirstComponent.Shared;
+@inject ModelState CounterState 
+
+@if (Show) {
+
+ <div class="dialog-container">
+  <div class="dialog">
+   <div class="dialog-title">
+    <h2>@ObjectModal.Title</h2>
+   </div>
+
+   <div class="dialog-body">
+    @ChildContent
+   </div>
+   <div>
+   @CounterState.ModalCounter
+
+    <button class="w3-button w3-black" @onclick="IncrementSales">Increace counter</button>
+    </div>
+         
+   <div class="dialog-buttons">
+    <button class="btn btn-secondary mr-auto" @onclick="OnCancel">@ObjectModal.CancelText</button>
+    <button class="btn btn-success ml-auto" @onclick="OnConfirm">@ObjectModal.ConfirmText</button>
+   </div>
+
+  </div>
+ </div>
+
+}
+
+@code {
+
+ [Parameter]
+ public Modal ObjectModal{ get; set; }
+
+ [Parameter]
+ public RenderFragment ChildContent { get; set; }
+
+ [Parameter]
+ public bool Show { get; set; } 
+
+ [Parameter] public EventCallback OnCancel { get; set; }
+ [Parameter] public EventCallback OnConfirm { get; set; }
+
+ private void IncrementSales()
+    {
+        CounterState.ModalCounter++;
+    }
+
+}

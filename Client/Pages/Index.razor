@@ -1,0 +1,18 @@
+﻿@page "/"
+@using OurFirstComponent.Shared
+
+
+<h4>Welcome to our new component</h4>
+
+<input type="checkbox" @bind="ShowModalPopUp" name="show PopUp" />  
+@if(ShowModalPopUp){
+<ModalWindow ObjectModal=@(new Modal() {Title="My first Modal dialog" }) Show="true" >
+    <p>
+        This is my first modal dialog
+    </p>
+</ModalWindow>
+}
+@code {
+    [Parameter]
+    public bool ShowModalPopUp { get; set; } = false; 
+}
